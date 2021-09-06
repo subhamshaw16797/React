@@ -1,0 +1,17 @@
+{
+  "name": "10-Express-JS-Bootstrap-Routing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "start": "nodemon server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.7.10",
+    "express": "^4.17.1"
+  }
+}

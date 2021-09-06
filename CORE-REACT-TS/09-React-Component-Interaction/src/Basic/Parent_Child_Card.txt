@@ -1,0 +1,152 @@
+import React, { Fragment } from 'react';
+import ChildCard from './ChildCard';
+
+interface IProps
+{
+    
+}
+interface IState
+{
+    pText:string;
+    cText:string;
+}
+class ParentCard extends React.Component<IProps,IState>
+{
+    
+
+    constructor(props:IProps)
+    {
+        super(props);
+        this.state={
+            pText:'',
+            cText:''
+        }
+    }
+
+    updateInput=(event:React.ChangeEvent<HTMLInputElement>)=>
+    {
+        this.setState(
+            {
+                pText:event.target.value
+            }
+        )
+    }
+
+    //receive data
+
+    receiveData=(value:string):void=>
+    {
+        this.setState(
+            {
+                ...this.state,
+                cText:value
+            }
+        )
+    }
+
+    //render() method is an instance method
+    render()
+    {
+        return(
+        <React.Fragment>
+            <section className="mt-3">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-8">
+                            <div className="card">
+                                <div className="card-body bg-warning text-white">
+                                   <div className="row">
+                                        <div className="col-md-4">
+                                        <form>
+                                             <div className="form-group">
+                                                 <input type="text" placeholder="Parent Text" className="form-control" onChange={this.updateInput} value={this.state.pText}/>
+                                             </div>
+                                        </form>
+                                        <small>{this.state.cText}</small>
+                                        </div>
+                                   </div>
+                                   <ChildCard pText={this.state.pText} sendData={this.receiveData}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </React.Fragment>
+        )
+    }
+}
+
+export default ParentCard;
+
+
+
+
+
+
+import React, { Fragment } from 'react';
+
+interface IProps
+{
+    pText:string;
+    sendData:(value:string)=>void
+}
+interface IState
+{
+    cText:string;
+}
+class ChildCard extends React.Component<IProps,IState>
+{
+    
+
+    constructor(props:IProps)
+    {
+        super(props);
+        this.state={
+            cText:''
+        }
+    }
+    //update input
+    updateInput=(event:React.ChangeEvent<HTMLInputElement>)=>
+    {
+        this.setState(
+            {
+                cText:event.target.value
+            }
+        )
+        this.props.sendData(event.target.value)
+    }
+    //render() method is an instance method
+    render()
+    {
+        return(
+        <React.Fragment>
+            <section className="mt-3">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-8">
+                            <div className="card">
+                                <div className="card-body rgba-blue-light text-white">
+                                   <div className="row">
+                                        <div className="col-md-6">
+                                        <form>
+                                             <div className="form-group">
+                                                 <input type="text" placeholder="Child Text" className="form-control" onChange={this.updateInput}/>
+                                             </div>
+                                        </form>
+                                        <small className="text-dark">{this.props.pText}</small>
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </React.Fragment>
+        )
+    }
+}
+
+export default ChildCard;
+

@@ -1,0 +1,158 @@
+import React, { Fragment } from 'react';
+
+interface IProps
+{
+    
+}
+interface IProduct
+{
+    sno:string;
+    name:string;
+    image:string;
+    price:number;
+    qty:number;
+}
+interface IState
+{
+    products:IProduct[]
+}
+class ShoppingCart extends React.Component<IProps,IState>
+{
+    
+
+    constructor(props:IProps)
+    {
+        super(props);
+
+        this.state={
+            products:[
+                {
+                sno:'AA101',
+                name:'MI WATCH',
+                image:'https://i.gadgets360cdn.com/products/large/mi-watch-458x800-1572951509.jpg',
+                price:15000,
+                qty:2
+                },
+                {
+                sno:'AA102',
+                name:'Apple WATCH',
+                image:'https://m.media-amazon.com/images/I/71fwbMm1NBL._AC_SL1500_.jpg',
+                price:35000,
+                qty:2
+                },
+                {
+                    sno:'AA103',
+                    name:'Fossil Watch',
+                    image:'https://fossil.scene7.com/is/image/FossilPartners/FTW4024-alt?$sfcc_fos_medium$',
+                    price:25000,
+                    qty:2
+                }
+                
+            ]
+        }
+    }
+    //incQty
+    incQty=(sno:string)=>
+    {
+        let updatedProduct:IProduct[]=this.state.products.map((product)=>
+        {
+            if(product.sno===sno)
+            {
+                return{
+                    ...product,
+                    qty:product.qty+1
+                }
+            }
+            return product;
+        });
+        this.setState(
+            {
+                products:[...updatedProduct]
+            }
+        )
+    }
+     //decQty
+     decQty=(sno:string)=>
+     {
+         let updatedProduct:IProduct[]=this.state.products.map((product)=>
+         {
+             if(product.sno===sno)
+             {
+                 return{
+                     ...product,
+                     qty:(product.qty-1>0)?product.qty-1:1
+                 }
+             }
+             return product;
+         });
+         this.setState(
+             {
+                 products:[...updatedProduct]
+             }
+         )
+     }
+    //render() method is an instance method
+    render()
+    {
+        let {products}=this.state;
+        return(
+        <React.Fragment>
+            <section className="mt-3">
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <h3 className="text-primary">ProductItem:-</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde illo necessitatibus reprehenderit laborum libero autem quas eveniet atque rem. Veritatis, unde vero esse facilis beatae necessitatibus amet officia expedita quaerat reprehenderit voluptatem laudantium aliquid consequatur repellendus magnam ratione accusamus est?</p>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="mt-3">
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <table className="table table-dark table-hover text-center table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>SNO</th>
+                                        <th>IMAGE</th>
+                                        <th>NAME</th>
+                                        <th>PRICE</th>
+                                        <th>QTY</th>
+                                        <th>TOTAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        products.map((product)=>
+                                        {
+                                            return(
+                                                <tr>
+                                                <td>{product.sno}</td>
+                                                <td><img src={product.image} alt="" width={40} height={40}/></td>
+                                                <td>{product.name}</td>
+                                                <td>&#8377;{product.price.toFixed(2)}</td>
+                                                <td><i className="fa fa-minus-circle mx-1" onClick={this.decQty.bind(this,product.sno)}></i>
+                                                    {product.qty}
+                                                    <i className="fa fa-plus-circle mx-1" onClick={this.incQty.bind(this,product.sno)}></i>
+                                                </td>
+                                                <td>{product.price*product.qty} </td>
+                                            </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </React.Fragment>
+        )
+    }
+}
+
+export default ShoppingCart;
+

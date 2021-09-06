@@ -1,0 +1,19 @@
+app.get('/home',(request:express.Request, response:express.Response)=>
+{
+    response.status(200).sendFile(path.join(__dirname,'views','index.html'));
+})app.get('/home',(request:express.Request, response:express.Response)=>
+{
+    response.status(200).sendFile(path.join(__dirname,'views','index.html'));
+})app.get('/home',(request:express.Request, response:express.Response)=>
+{
+    response.status(200).sendFile(path.join(__dirname,'views','index.html'));
+})app.get('/home',(request:express.Request, response:express.Response)=>
+{
+    response.status(200).sendFile(path.join(__dirname,'views','index.html'));
+})app.get('/home',(request:express.Request, response:express.Response)=>
+{
+    response.status(200).sendFile(path.join(__dirname,'views','index.html'));
+})app.get('/home',(request:express.Request, response:express.Response)=>
+{
+    response.status(200).sendFile(path.join(__dirname,'views','index.html'));
+})

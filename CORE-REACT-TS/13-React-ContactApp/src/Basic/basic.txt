@@ -1,0 +1,27 @@
+import React from "react";
+interface IProps
+{
+
+}
+interface IState
+{
+
+}
+class Wishmsg extends React.Component<IProps,IState>
+{
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+    constructor (props:IProps)
+    {
+        super(props)
+    }
+   render()
+    {
+        return(
+        <React.Fragment>
+            //https://gist.githubusercontent.com/subhamshaw16797/b49ea5c60d2baf21b29a08cfcafb10ed/raw/414041bd329e6915e11161c9188552ceb3a73329/contact070821
+        </React.Fragment>
+        )
+    }
+
+}
+export default Wishmsg;
